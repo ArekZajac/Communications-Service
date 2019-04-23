@@ -47,12 +47,12 @@ public class menuChat {
 
     public menuChat() throws IOException {
         try {
-            UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch(Exception ignored){}
         VBox layout = new VBox();
         layout.setPadding(new Insets(10, 10, 10, 10));
         layout.setSpacing(10);
-        layout.setAlignment(Pos.CENTER);
+        layout.setAlignment(Pos.BASELINE_CENTER);
 
         VBox layoutWrap = new VBox();
 
@@ -112,7 +112,7 @@ public class menuChat {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         Label loginMessage = new Label();
-        loginMessage.setText("Successfully logged in as " + Data.loggedName + "\n ");
+        loginMessage.setText("Successfully logged in as " + Data.loggedName + " and connected to server " + Data.serverConnection + ":" + Data.serverPort);
 
         Button chatStart = new Button("Enter Chat");
         chatStart.setOnAction(e -> {
@@ -141,8 +141,6 @@ public class menuChat {
         noConnection.getChildren().addAll(iE, connectionMessage, connectionMessage2);
         if (Connections.serverConnection()) {
             layoutWrap.getChildren().addAll(bar, layout);
-        } else {
-            layoutWrap.getChildren().addAll(bar, noConnection);
         }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,7 +159,6 @@ public class menuChat {
         } else if (line.startsWith("#ACCEPTEDNAME#")) {
             textField.setEditable(true);
         } else if (line.startsWith("#MESSAGE#")) {
-            System.out.println(line);
             messageArea.append(Data.loggedName + ": " + Data.decrypt(line.substring(9 + Data.loggedName.length() + 3), Main.shift) + "\n");
         }
         run();

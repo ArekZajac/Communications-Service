@@ -37,7 +37,9 @@ class Server implements Runnable{
 
     public static void main() throws Exception {
 
-        System.out.println("1");
+        try {
+            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch(Exception ignored){}
 
         consoleArea.setEditable(false);
         frame.getContentPane().add(new JScrollPane(consoleArea), BorderLayout.CENTER);

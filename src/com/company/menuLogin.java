@@ -67,8 +67,8 @@ public class menuLogin {
         CheckBox stayLogged = new CheckBox("Stay Logged In");
 
         Button newServerButton = new Button("Create a new server");
-        newServerButton.setMinSize(120, 30);
-        newServerButton.setMaxSize(120, 30);
+        newServerButton.setMinSize(250, 30);
+        newServerButton.setMaxSize(250, 30);
         newServerButton.setOnAction(e-> {
             Thread serverThread = new Thread(new Server());
             serverThread.start();

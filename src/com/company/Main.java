@@ -45,7 +45,7 @@ public class Main extends Application {
 
         // Sets a title and icon for the application
         primaryStage.setTitle("Communications Service Client");
-        primaryStage.getIcons().add(new Image("file:Images/doggo.png"));
+        primaryStage.getIcons().add(new Image("file:Images/iconMain.png"));
 
         // Directs the user to either the login or main window depending whether they previously chose to stay logged in.
         if (Data.stayLogged) {
