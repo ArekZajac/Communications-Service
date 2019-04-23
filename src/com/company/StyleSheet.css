@@ -1,0 +1,125 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.root {
+    midnight: #2c3e50;
+    asphalt: #34495e;
+    silver: #bdc3c7;
+    cloud: #ecf0f1;
+    belize: #2980b9;
+    river: #3498db;
+
+    -fx-background: midnight;
+    -fx-font-family: "Arial";
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.button {
+    -fx-background-color: asphalt;
+    -fx-text-fill: cloud;
+    -fx-border-color: cloud;
+    -fx-background-radius: 15;
+    -fx-border-radius: 15;
+}
+
+.button:hover {
+    -fx-background-color: cloud;
+    -fx-text-fill: midnight;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.check-box .box {
+    -fx-background-colour: cloud;
+    -fx-border-color: cloud;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: cloud;
+}
+
+.check-box:selected .box {
+    -fx-background-color: asphalt;
+}
+
+.check-box:selected .text {
+    -fx-background-color: asphalt;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.text-field {
+    -fx-background-color: cloud;
+    -fx-background-radius: 15;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.menu-bar{
+    -fx-background-color: asphalt;
+}
+
+.menu .label{
+    -fx-text-fill: cloud;
+}
+
+.menu:hover {
+    -fx-background-color: river;
+}
+
+.menu-item .label{
+    -fx-text-fill: midnight;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.text-area .content {
+    -fx-background-color: cloud;
+    -fx-background-radius: 15;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb{
+    -fx-background-color: cloud;
+    -fx-border-color: cloud;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: asphalt;
+    -fx-border-color: cloud;
+    -fx-background-radius: 0.0em;
+    -fx-border-radius: 10;
+}
+
+.scroll-bar:horizontal .increment-button ,
+.scroll-bar:horizontal .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 0.0 10.0 0.0;
+}
+
+.scroll-bar:vertical .increment-button ,
+.scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0.0em;
+    -fx-padding: 0.0 10.0 0.0 0.0;
+}
+
+ .scroll-bar .increment-arrow,
+ .scroll-bar .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding: 0.15em 0.0;
+}
+
+ .scroll-bar:vertical .increment-arrow,
+ .scroll-bar:vertical .decrement-arrow{
+    -fx-shape: " ";
+    -fx-padding: 0.0 0.15em;
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
