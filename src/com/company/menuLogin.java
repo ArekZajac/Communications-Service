@@ -6,6 +6,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.IOException;
+
 public class menuLogin {
 
     static Label textOutput = new Label();
@@ -64,13 +66,21 @@ public class menuLogin {
 
         CheckBox stayLogged = new CheckBox("Stay Logged In");
 
+        Button newServerButton = new Button("Create a new server");
+        newServerButton.setMinSize(120, 30);
+        newServerButton.setMaxSize(120, 30);
+        newServerButton.setOnAction(e-> {
+            Thread serverThread = new Thread(new Server());
+            serverThread.start();
+        });
+
         layoutMicro2.getChildren().addAll(textIP, labelServer, textPort);
         layoutMicro1.getChildren().addAll(buttonLogin, stayLogged);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Does all that jaxafx stuff.
 
-        layoutMain.getChildren().addAll(labelTitle, textUsername, textPassword, labelBlank2, labelServerTitle, layoutMicro2, labelBlank3, layoutMicro1, textOutput);
+        layoutMain.getChildren().addAll(labelTitle, textUsername, textPassword, labelBlank2, labelServerTitle, layoutMicro2, labelBlank3, layoutMicro1, textOutput, newServerButton);
         Scene sceneLogin = new Scene(layoutMain, 400, 500);
         sceneLogin.getStylesheets().add("com/company/" + Main.style);
         Main.window.setScene(sceneLogin);
