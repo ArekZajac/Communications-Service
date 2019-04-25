@@ -6,13 +6,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-import java.io.IOException;
+class menuLogin {
 
-public class menuLogin {
+    private static Label textOutput = new Label();
 
-    static Label textOutput = new Label();
-
-    public static void menu() {
+    static void menu() {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Creates all the layouts needed.
         VBox layoutMain = new VBox();

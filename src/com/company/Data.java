@@ -3,10 +3,8 @@ package com.company;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
-public class Data {
+class Data {
 
     static boolean stayLogged = false;
     static String loggedName = null;
@@ -18,7 +16,7 @@ public class Data {
     static boolean flashing = false;
     static boolean BRMode = false;
 
-    public static void getData() {
+    static void getData() {
         java.util.ArrayList<String> list = null;
         try {
             FileInputStream stream = new FileInputStream(getDocumentsPath() + "\\dataFile.txt");
@@ -31,8 +29,6 @@ public class Data {
                 list.add(strLine);
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -48,12 +44,11 @@ public class Data {
         BRMode = Boolean.parseBoolean(dataStrip(list.get(8)));
     }
 
-    public static String dataStrip(String input) {
-        String stripped = input.replaceAll(".*=", "");
-        return stripped;
+    private static String dataStrip(String input) {
+        return input.replaceAll(".*=", "");
     }
 
-    public static void setData() throws IOException {
+    static void setData() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(getDocumentsPath() + "\\dataFile.txt"));
         writer.write("stayLogged=" + stayLogged);
         writer.newLine();
@@ -75,20 +70,20 @@ public class Data {
         writer.close();
     }
 
-    public static String getTime() {
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-        return sdf.format(cal.getTime());
-    }
+//    public static String getTime() {
+//        Calendar cal = Calendar.getInstance();
+//        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+//        return sdf.format(cal.getTime());
+//    }
 
-    public static String getDocumentsPath() {
+    static String getDocumentsPath() {
         JFileChooser fr = new JFileChooser();
         FileSystemView fw = fr.getFileSystemView();
         return String.valueOf(fw.getDefaultDirectory());
     }
 
-    public static String encrypt(String original, int shift) {
-        String encrypted = "";
+    static String encrypt(String original, int shift) {
+        StringBuilder encrypted = new StringBuilder();
         for (int i = 0; i < original.length(); i++) {
             int c = original.charAt(i) + shift;
             if (c > 126) {
@@ -96,12 +91,12 @@ public class Data {
             } else if (c < 32) {
                 c += 95;
             }
-            encrypted += (char) c;
+            encrypted.append((char) c);
         }
-        return encrypted;
+        return encrypted.toString();
     }
 
-    public static String decrypt(String encrypted, int shift) {
+    static String decrypt(String encrypted, int shift) {
         return encrypt(encrypted, shift);
     }
 }

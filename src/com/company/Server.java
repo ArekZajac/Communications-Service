@@ -8,16 +8,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
-import java.util.Scanner;
 
 class Server implements Runnable{
 
-    static JFrame frame = new JFrame("Communications Service Server");
-    static JTextArea consoleArea = new JTextArea(16, 50);
+    private static JFrame frame = new JFrame("Communications Service Server");
+    private static JTextArea consoleArea = new JTextArea(16, 50);
 
-    public static int port = 9002;
-    public static HashSet<String> usernames = new HashSet<>();
-    public static HashSet<PrintWriter> writers = new HashSet<>();
+    private static int port = 9002;
+    private static final HashSet<String> usernames = new HashSet<>();
+    private static HashSet<PrintWriter> writers = new HashSet<>();
 
     public void run(){
         try {
@@ -27,15 +26,15 @@ class Server implements Runnable{
         }
     }
 
-    public static void getPort() {
+    private static void getPort() {
         port = Integer.parseInt(JOptionPane.showInputDialog(frame, "Select a port to listen at:", "Communications Service Server", JOptionPane.PLAIN_MESSAGE));
     }
 
-    public static void showText(String text){
+    private static void showText(String text){
         consoleArea.append(text + "\n");
     }
 
-    public static void main() throws Exception {
+    private static void main() throws Exception {
 
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
@@ -50,14 +49,11 @@ class Server implements Runnable{
 
         getPort();
 
-        showText("Communications-Service-Server Running...");
-        ServerSocket socketListener = new ServerSocket(port);
-        try {
+        showText("Communications Service Server Running on Port " + port + " ...");
+        try (ServerSocket socketListener = new ServerSocket(port)) {
             while (true) {
                 new Controller(socketListener.accept()).start();
             }
-        } finally {
-            socketListener.close();
         }
 
 
@@ -70,7 +66,7 @@ class Server implements Runnable{
         BufferedReader input;
 
 
-        public Controller(Socket socket) {
+        Controller(Socket socket) {
             this.socket = socket;
         }
 
@@ -120,7 +116,7 @@ class Server implements Runnable{
                 }
                 try {
                     socket.close();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }

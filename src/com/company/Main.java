@@ -16,7 +16,7 @@ public class Main extends Application {
     static String defFont = "Arial";
     static String version = "19.4.13a";
     static int shift = 10;
-    File dataFile = new File(Data.getDocumentsPath() + "\\dataFile.txt");
+    private File dataFile = new File(Data.getDocumentsPath() + "\\dataFile.txt");
 
     public static void main(String[] args) {
         launch(args);

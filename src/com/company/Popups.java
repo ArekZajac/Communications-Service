@@ -14,11 +14,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
-public class Popups {
+class Popups {
 
-    static String style = "StyleSheet.css";
+    private static String style = "StyleSheet.css";
 
-    public static void windowSettings() {
+    static void windowSettings() {
 
         Stage settingsStage = new Stage();
         settingsStage.initModality(Modality.APPLICATION_MODAL);
@@ -57,7 +57,7 @@ public class Popups {
         settingsStage.showAndWait();
     }
 
-    public static void windowAccount() {
+    static void windowAccount() {
         Stage accountStage = new Stage();
         accountStage.initModality(Modality.APPLICATION_MODAL);
         accountStage.setTitle("Account");
@@ -89,7 +89,7 @@ public class Popups {
         accountStage.showAndWait();
     }
 
-    public static void windowAbout() {
+    static void windowAbout() {
         Stage aboutStage = new Stage();
         aboutStage.initModality(Modality.APPLICATION_MODAL);
         aboutStage.setTitle("About");
@@ -104,7 +104,7 @@ public class Popups {
 
         layout.getChildren().addAll(versionLabel, nameLabel);
         Scene scene = new Scene(layout, 400, 250);
-        scene.getStylesheets().add("com/company/AboutStyle.css");
+        scene.getStylesheets().add("com/company/StyleSheet.css");
         aboutStage.setScene(scene);
         aboutStage.showAndWait();
     }

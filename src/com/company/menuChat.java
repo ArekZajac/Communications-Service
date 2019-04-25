@@ -14,11 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,15 +24,15 @@ import java.net.Socket;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class menuChat {
+class menuChat {
 
-    static BufferedReader input;
-    static PrintWriter output;
-    JFrame frame = new JFrame("Chatter");
-    JTextField textField = new JTextField(50);
-    JTextArea messageArea = new JTextArea(16, 50);
+    private static BufferedReader input;
+    private static PrintWriter output;
+    private JFrame frame = new JFrame("Communications Service Client");
+    private JTextField textField = new JTextField(50);
+    private JTextArea messageArea = new JTextArea(16, 50);
 
-    public static void start() throws Exception {
+    static void start() throws Exception {
         // Make connection and initialize streams
         Socket socket = new Socket(Data.serverConnection, Data.serverPort);
         input = new BufferedReader(new InputStreamReader(
@@ -45,7 +42,7 @@ public class menuChat {
         new menuChat();
     }
 
-    public menuChat() throws IOException {
+    private menuChat() {
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch(Exception ignored){}
@@ -95,10 +92,8 @@ public class menuChat {
         mh1.setOnAction(e -> {
             if (Desktop.isDesktopSupported()) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/ArekZajac/Communications-Service-Client"));
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                } catch (URISyntaxException e1) {
+                    Desktop.getDesktop().browse(new URI("https://github.com/ArekZajac/Communications-Service"));
+                } catch (IOException | URISyntaxException e1) {
                     e1.printStackTrace();
                 }
             }
@@ -153,14 +148,17 @@ public class menuChat {
 
     private void run() throws IOException {
         String line = input.readLine();
-        String out = "";
         if (line.startsWith("#SUBMITNAME#")) {
+            //If the server requests the name, it sends the name that was used to log in
             output.println(Data.loggedName);
         } else if (line.startsWith("#ACCEPTEDNAME#")) {
+            //If the name is accepted by the server, it allows the user to use the chat
             textField.setEditable(true);
         } else if (line.startsWith("#MESSAGE#")) {
-            messageArea.append(Data.loggedName + ": " + Data.decrypt(line.substring(9 + Data.loggedName.length() + 3), Main.shift) + "\n");
+            //Decrypts only the text after the message identifier, therefore removes the first 10 characters
+            messageArea.append(Data.decrypt(line.substring(10), Main.shift) + "\n");
         }
+        //Runs the method again so it is able to receive more messages
         run();
     }
 
@@ -174,11 +172,9 @@ public class menuChat {
         frame.setLocationRelativeTo(null);
 
         //When the enter key is pressed it sends the message and clears the message box.
-        textField.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                output.println(Data.loggedName + ": " + Data.encrypt(textField.getText(), -Main.shift));
-                textField.setText("");
-            }
+        textField.addActionListener(e -> {
+            output.println(Data.encrypt(Data.loggedName + ": " +textField.getText(), -Main.shift));
+            textField.setText("");
         });
 
         //The application exits if the frame gets closed.
