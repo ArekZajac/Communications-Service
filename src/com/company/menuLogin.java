@@ -12,7 +12,7 @@ class menuLogin {
 
     static void menu() {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Creates all the layouts needed.
+        //Creates all the layouts needed.
         VBox layoutMain = new VBox();
         layoutMain.setSpacing(10);
         layoutMain.setAlignment(Pos.CENTER);
@@ -26,7 +26,7 @@ class menuLogin {
         layoutMicro2.setAlignment(Pos.CENTER);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Creates all the elements of the user interface.
+        //Creates all the elements of the user interface.
 
         Label labelTitle = new Label("Login");
 
@@ -76,7 +76,7 @@ class menuLogin {
         layoutMicro1.getChildren().addAll(buttonLogin, stayLogged);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Does all that jaxafx stuff.
+        //Does all that jaxafx stuff.
 
         layoutMain.getChildren().addAll(labelTitle, textUsername, textPassword, labelBlank2, labelServerTitle, layoutMicro2, labelBlank3, layoutMicro1, textOutput, newServerButton);
         Scene sceneLogin = new Scene(layoutMain, 400, 500);
@@ -85,7 +85,7 @@ class menuLogin {
         Main.window.show();
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Adds functionality to elements of the user interface.
+        //Adds functionality to elements of the user interface.
 
         buttonLogin.setOnAction((e) -> {
             try {
