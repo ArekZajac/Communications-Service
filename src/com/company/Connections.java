@@ -12,7 +12,7 @@ class Connections {
         return true;
     }
 
-    static boolean verifyLogin(String username, String password) throws SQLException {
+    static boolean verifyLogin(String username, String password){
 
         try (Connection con = DriverManager.getConnection(databaseConnection, databaseUsername, databasePassword); Statement stmt = con.createStatement()) {
             ResultSet rsNameCheck = stmt.executeQuery("select id from useraccounts where username = \'" + username + "\'");

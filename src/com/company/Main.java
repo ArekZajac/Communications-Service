@@ -7,8 +7,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-import static javafx.application.Application.launch;
-
 public class Main extends Application {
 
     static Stage window;
@@ -47,11 +45,7 @@ public class Main extends Application {
         primaryStage.setTitle("Communications Service Client");
         primaryStage.getIcons().add(new Image("file:Images/iconMain.png"));
 
-        // Directs the user to either the login or main window depending whether they previously chose to stay logged in.
-        if (Data.stayLogged) {
-//            menuMain();
-        } else {
+        // Directs the user to the main window.
             menuLogin.menu();
-        }
     }
 }
